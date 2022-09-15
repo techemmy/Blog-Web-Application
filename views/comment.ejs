@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="comments my-5">
+        <h2>All your comments</h2>
+        <p>Click on the comment to go to post</p>
+        <% if (comments.length > 0) { %>
+          <% comments.reverse().forEach(comment => { %>
+          <div class="card">
+            <div class="card-header">
+              <%= comment.createdAt %>
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <% if (comment.blog){ %>
+                    <a href="/blogs/<%= comment.blog._id %> " class="comment">
+                        <p><%= comment.comment %></p>
+                    </a>
+                <% } else { %> 
+                    <p><span class="text-danger">Deleted: </span><%= comment.comment %></p>
+                <% } %> 
+              </blockquote>
+            </div>
+          </div>
+          <% }) %>
+        <% } else { %>
+          <h3>There are no comments to display...</h3>
+        <% } %>
+      </div>
+      <%- include('./partials/footer.ejs') %> 
+  </body>
+</html>

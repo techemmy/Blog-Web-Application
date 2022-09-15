@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="d-flex flex-column center justify-content-center align-items-center">
+      <%- include('../partials/errors.ejs') %>
+      <h2 class="mt-5">User Details</h2>
+      <% if (currentUser.profileImagePath) { %>
+      <img src="<%= profileImagePath %>/<%= currentUser.profileImagePath %>" alt="Profile Image" class="profile-img">
+      <% }else { %>
+        <img src="<%= profileImagePath %>/dummy-avatar.png" alt="Profile Image" class="profile-img">
+      <% } %>
+      <p class="mt-3">Username: <b><span><%= currentUser.username %></span></b></p>
+      <p>Email: <b><span><%= currentUser.email %></span></b></p>
+      <% if (isCurrentUser) { %>
+        <div class="my-3">
+          <a href="/user/comments"><button type="button" class="btn btn-secondary mx-2">My comments</button></a>
+          <a href="/user/edit-profile"><button type="button" class="btn btn-secondary mx-2">Edit Profile</button></a>
+        </div>
+        <form action="/user/<%- user._id %>/upload/profile-img" method="post" enctype="multipart/form-data" class="file-upload">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Profile Image:</label>
+            <input class="form-control" type="file" id="formFile" name="profileImage" required>
+          </div>
+          <button type="submit" class="btn btn-success">
+            <% if (!currentUser.profileImagePath) { %>
+            Upload
+            <% }else { %>
+              Update
+              <% } %>
+          </button>
+        </form>
+      <% } %>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="d-flex flex-column justify-content-center align-items-center mx-auto container">
+      
+        <form autocomplete="off" action="/user/edit-profile" method="POST" class="w-50 mx-auto">
+          <h3 class="text-center my-3">Edit Profile</h3>
+          <%- include('../partials/errors.ejs') %>
+  
+          <label for="username">Username:</label>
+          <div class="input-group mb-3">
+            <input type="text" id="username" name="username" autocomplete="off" class="form-control" placeholder="<%= user.username %>" aria-label="username" aria-describedby="basic-addon1">
+          </div>
+
+          <label for="email">Email:</label>
+          <div class="input-group mb-3">
+            <input type="text" id="email" name="email" class="form-control" placeholder="<%= user.email %>" aria-label="email" aria-describedby="basic-addon1" readonly>
+          </div>
+          
+          <h3 class="my-3">Change Password</h3>
+
+          <label for="oldPassword">Old Password:</label>
+          <div class="input-group mb-3">
+            <input type="password" id="oldPassword" name="oldPassword" autocomplete="off"  class="form-control" placeholder="Enter your old password" aria-label="oldPassword" aria-describedby="basic-addon1">
+          </div>
+          
+          <label for="newPassword">New Password:</label>
+          <div class="input-group mb-3">
+            <input type="password" id="newPassword" name="newPassword" autocomplete="new-password" class="form-control" placeholder="Enter your old password" aria-label="newPassword" aria-describedby="basic-addon1">
+          </div>
+
+          <button class="btn btn-success w-100">Save Changes</button>
+        </form>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+    </script>
+  </body>
+</html>

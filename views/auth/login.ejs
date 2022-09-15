@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+  <body>
+    <%- include('../partials/nav.ejs') %>
+      <section class="d-flex flex-column justify-content-center align-items-center mx-auto container">
+        <form action="/auth/login" method="POST" class="w-50 mx-auto">
+          <h3 class="text-center my-3">Login Now!!</h3>
+          <%- include('../partials/errors.ejs') %>
+
+          <label for="email">Email:</label>
+          <div class="input-group mb-3">
+            <input type="text" id="email" name="email" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1" required>
+          </div>
+          
+          <label for="password">Password:</label>
+          <div class="input-group mb-3">
+            <input type="password" id="password" name="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1" required>
+          </div>
+
+          <button class="btn btn-success w-100">Login</button>
+        </form>
+      </section>
+
+      <%- include('../partials/footer.ejs') %>
+
+  </body>
+
+</html>

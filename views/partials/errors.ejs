@@ -1,0 +1,7 @@
+<% if (errors) { %>
+    <% errors.forEach(error => {%>
+    <div class="alert alert-<%= messageType %>" role="alert">
+      <%= error %>
+    </div>
+    <% }) %>
+<% } %>

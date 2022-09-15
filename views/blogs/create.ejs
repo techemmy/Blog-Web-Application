@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="d-flex flex-column justify-content-center align-items-center mx-auto mt-5 container">
+      <form action="/blogs" method="POST" class="w-50">
+        <h3 class="text-center my-3">Create new blog</h3>
+
+        <label for="title">Blog title:</label>
+        <div class="input-group mb-3">
+          <input type="text" id="title" name="title" class="form-control" placeholder="Title" aria-label="title" aria-describedby="basic-addon1" required>
+        </div>
+        
+        <label for="snippet">Blog title:</label>
+        <div class="input-group mb-3">
+          <input type="text" id="snippet" name="snippet" class="form-control" placeholder="Snippet (50 characters max)" maxlength="50" aria-label="snippet" aria-describedby="basic-addon1" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="body" class="form-label">Blog body:</label>
+          <textarea class="form-control" id="body" name="body" rows="3" placeholder="Write here..." required></textarea>
+        </div>
+          
+        <fieldset>
+          <legend>Select labels:</legend>
+          <% labels.forEach(label => { %>
+          <div>
+            <input type="checkbox" name="label" id="<%= label.title %>" value="<%= label._id %>" />
+            <label for="<%= label.title %>"><%= label.title %></label>
+          </div>
+          <% }) %>
+        </fieldset>
+        <button type="submit" class="btn btn-success my-3 w-100">Success</button>
+      </form>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+body {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+p,
+h1,
+h2,
+h3,
+a,
+ul {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #222;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+.text-ellipse {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* footer styles */
+footer {
+  color: #777;
+  text-align: center;
+  margin: 80px auto 20px;
+}
+
+/* index styles */
+
+.labels span {
+  font-size: 0.8em;
+  text-align: center;
+  margin: 2px;
+  padding: 2px 3px;
+  border: 1px solid #9c9efe;
+  border-radius: 5px;
+}
+
+/* details styles */
+.content {
+  margin: 20px 0;
+  font-size: large;
+}
+.details {
+  text-align: center;
+  position: relative;
+}
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: 1px solid #dc3545;
+}
+.delete:hover {
+  cursor: pointer;
+}
+
+/* Comments styles */
+.card {
+  margin: 10px 0;
+}
+.comment:hover p {
+  color:rgba(0, 0, 0, 0.2);
+}
+
+/* user styles */
+form.file-upload {
+  display: inline;
+  text-align: center;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

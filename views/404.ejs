@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="404 content">
+      <% if (message) {%>
+        <h2>An error occured :|</h2>
+        <h3><%= message %></h3>
+        <% } else { %>
+          <h2>00PS, page not found :)</h2>
+        <% } %>
+    </div>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

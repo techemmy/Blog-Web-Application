@@ -1,0 +1,87 @@
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+  <body>
+    <%- include("../partials/nav.ejs") %>
+
+      <div class="mt-5 details">
+        <h2>
+          <%= blog.title %>
+        </h2>
+        <small><b>Created at:</b>
+          <%= blog.createdAt %>
+        </small>
+        <p class="labels">
+          <% for (let label of blog.labels){ %>
+            <span style="color:<%= label.color %>">
+              <%= label['title'] %>
+            </span>
+            <% } %>
+        </p>
+        <div class="content blog-content">
+          <p>
+            <%= blog.body %>
+          </p>
+        </div>
+        <% if (blog.createdBy) { %>
+          <% if (user._id.toString()===blog.createdBy.toString()) { %>
+            <button type="button" class="btn btn-outline-danger delete" data-doc="<%= blog._id %>">Delete</button>
+            <% } %>
+              <% } %>
+      </div>
+      <div class="container my-3">
+        <form action="/blogs/<%= blog._id %>" method="POST" class="d-flex flex-column">
+
+          <div class="mb-3">
+            <label for="comment" class="form-label">Type your thoughts</label>
+            <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Comment here..." required></textarea>
+          </div>
+
+          <button class="btn btn-success w-100">Submit</button>
+        </form>
+      </div>
+
+      <div class="comments mt-5">
+        <h2 class="text-center">All Comments</h2>
+        <% if (comments.length> 0) { %>
+          <% comments.reverse().forEach(comment=> { %>
+            <div class="card">
+              <div class="card-header">
+                <%= comment.createdAt %>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p><b>
+                      <%= comment.user.username %>
+                    </b>:
+                    <%= comment.comment %>
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+            <% }) %>
+              <% } else { %>
+                <h3>There are no comments to display...</h3>
+                <% } %>
+      </div>
+
+      <%- include("../partials/footer.ejs") %>
+
+        <script>
+          const deleteBtn = document.querySelector('button.delete');
+          if (deleteBtn) {
+            deleteBtn.addEventListener('click', (e) => {
+              const endpoint = `/blogs/${deleteBtn.dataset.doc}`;
+              fetch(endpoint, {
+                method: 'DELETE',
+              })
+                .then(response => response.json())
+                .then(data => window.location.href = data.redirect)
+                .catch(err => console.log(err));
+            });
+          }
+
+        </script>
+  </body>
+
+</html>

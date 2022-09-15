@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+      <div class="blogs content">
+        <h2>All blogs</h2>
+        <% if (blogs.length> 0) { %> 
+          <% blogs.forEach(blog=> { %>  
+            <div class="card text-center w-100 my-3">
+              <div class="card-header">
+                <% if (blog.labels.length> 0) { %>
+                  <p class="labels">
+                    <% for (let label of blog.labels){ %>
+                      <span style="color:<%= label.color %>">
+                        <%= label['title'] %>
+                      </span>
+                      <% } %>
+                  </p>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= blog.title %></h5>
+                <p class="card-text"><%= blog.snippet %></p>
+                <a href="/blogs/<%= blog._id %>" class="btn btn-primary mt-2">Go to</a>
+              </div>
+            </div>
+            <% }) %>
+         <% } else { %>
+                <h3>There are no blogs to display...</h3>
+          <% } %>
+      </div>
+      <%- include('../partials/footer.ejs') %>
+  </body>
+
+</html>
